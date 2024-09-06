@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Envelope</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nerko+One&family=Oswald:wght@200..700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nerko+One&family=Oswald:wght@200..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+
+        :root {
+            --primary: #fff;
+            --bg-color: rgb(5, 134, 111);
+            --bg-envelope-color: #f5edd1;
+            --envelope-tab: #ecdeb8;
+            --envelope-cover: #e6cfa7;
+            --shadow-color: rgba(0, 0, 0, 0.2);
+            --txt-color: #444;
+            --heart-color: rgb(252, 8, 231);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            position: relative;
+        }
+
+        .container>.envelope-wrapper {
+            background: var(--bg-envelope-color);
+            box-shadow: 0 0 40px var(--shadow-color);
+        }
+
+        .envelope-wrapper>.envelope {
+            position: relative;
+            width: 300px;
+            height: 230px;
+        }
+
+        .envelope-wrapper>.envelope::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            border-top: 130px solid var(--envelope-tab);
+            border-right: 150px solid transparent;
+            border-left: 150px solid transparent;
+            transform-origin: top;
+            transition: all 0.5s ease-in-out 0.7s;
+        }
+
+        .envelope-wrapper>.envelope::after {
+            content: "";
+            position: absolute;
+            z-index: 2;
+            width: 0px;
+            height: 0px;
+            border-top: 130px solid transparent;
+            border-right: 150px solid var(--envelope-cover);
+            border-bottom: 100px solid var(--envelope-cover);
+            border-left: 150px solid var(--envelope-cover);
+        }
+
+        .envelope>.letter {
+            position: absolute;
+            right: 20%;
+            bottom: 0;
+            width: 54%;
+            height: 80%;
+            background: var(--primary);
+            text-align: center;
+            transition: all 1s ease-in-out;
+            box-shadow: 0 0 5px var(--shadow-color);
+            padding: 20px 10px;
+        }
+
+        .envelope>.letter>.text {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: var(--txt-color);
+            text-align: left;
+            font-size: 10px;
+        }
+
+        .heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 15px;
+            height: 15px;
+            background: var(--heart-color);
+            z-index: 4;
+            transform: translate(-50%, -20%) rotate(45deg);
+            transition: transform 0.5s ease-in-out 1s;
+            box-shadow: 0 1px 6px var(--shadow-color);
+            cursor: pointer;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: "";
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: var(--heart-color);
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -7.5px;
+        }
+
+        .heart:after {
+            right: 7.5px;
+        }
+
+        .flap>.envelope:before {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .flap>.envelope>.letter {
+            bottom: 100px;
+            transform: scale(1.5);
+            transition-delay: 1s;
+        }
+
+        .flap>.heart {
+            transform: rotate(90deg);
+            transition-delay: 0.4s;
+        }
+
+        .click {
+            font-family: "Oswald", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            position: absolute;
+            z-index: 2;
+            top: 50%;
+            transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .flap .click {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .tag {
+            text-decoration: none;
+            font-size: 18px;
+            font-style: italic;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+            position: absolute;
+            top: 36%;
+            left: 65%;
+            transform: translate(-50%, -50%);
+        }
+
+        .flap a {
+            opacity: 1;
+            visibility: visible;
+            z-index: 2;
+        }
+
+        /* a:hover {
+            color: #ff69b4;
+        } */
+
+        .text p i {
+            padding: 12px;
+            position: relative;
+            left: 25%;
+            font-size: 26px;
+        }
+
+        .text p span img {
+            width: 60px;
+            height: 40px;
+            position: relative;
+            left: 10%;
+        }
+        #btn{
+            font-size: 9px;
+          
+            color:whitesmoke;
+            padding: 0;
+            
+            border-radius: 30px;
+            border: 2px solid rgb(245, 74, 74);
+            font-family: papyrus;
+            background-color: rgb(243, 119, 119);
+        }
+        #btn:hover{
+            cursor: pointer;
+        }
+        #btntag{
+            text-decoration: none;
+            padding: 0%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="envelope-wrapper">
+            <div class="envelope">
+                <div class="letter">
+                    <div class="text">
+                        <h4>Dear ____❤️  &nbsp;<button  id="btn">Click me♥</button></h4>
+                        
+                        <p>
+                            I want to say many things to you but I can't express them in this message.So let's be together❤️ and set sail....
+                            #onepiece is real.
+                        
+                        </p>
+                        
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="heart"></div>
+        </div>
+        <div class="click">
+            <h3>Click To Open</h3>
+        </div>
+        <a href="test.html" target="_blank" class="tag">Click Here</a>
+    </div>
+    <script>
+        const envelope = document.querySelector('.envelope-wrapper');
+        const clickText = document.querySelector('.click');
+
+        envelope.addEventListener('click', () => {
+            envelope.classList.toggle('flap');
+            if (envelope.classList.contains('flap')) {
+                clickText.style.opacity = '0';
+                clickText.style.visibility = 'hidden';
+            } else {
+                setTimeout(() => {
+                    clickText.style.opacity = '1';
+                    clickText.style.visibility = 'visible';
+                }, 1000); // Delay for smooth reappearance
+            }
+        });
+
+document.getElementById("btn").addEventListener('click', function(event) {
+            event.preventDefault(); 
+            event.stopPropagation(); 
+            window.location.href = "https://what u want to show..ex-info,venue....com"; 
+        });
+    </script>
+</body>
+
+</html>
